@@ -9,6 +9,8 @@
 import UIKit
 
 class TweetCell: UITableViewCell {
+    @IBOutlet weak var nameTextLabel: UILabel!
+    
     
     @IBOutlet weak var tweetTextLabel: UILabel!
     
@@ -17,6 +19,8 @@ class TweetCell: UITableViewCell {
             tweetTextLabel.text = tweet.text
         }
     }
+    
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

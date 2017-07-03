@@ -41,6 +41,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
         cell.tweet = tweets[indexPath.row]
+        cell.nameTextLabel.text = cell.tweet.user.name as! String
+        
         
         return cell
     }
