@@ -31,6 +31,7 @@ class APIManager: SessionManager {
         let callbackURL = URL(string: APIManager.callbackURLString)!
         oauthManager.authorize(withCallbackURL: callbackURL, success: { (credential, _response, parameters) in
             
+            
             // Save Oauth tokens
             self.save(credential: credential)
             
@@ -41,6 +42,8 @@ class APIManager: SessionManager {
                     print("Welcome \(user.name)")
                     
                     // MARK: TODO: set User.current, so that it's persisted
+                    User.current = user // this isn't enough...
+                    
                     
                     success()
                 }
@@ -54,6 +57,7 @@ class APIManager: SessionManager {
         clearCredentials()
         
         // TODO: Clear current user by setting it to nil
+        User.current = nil
 
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }
