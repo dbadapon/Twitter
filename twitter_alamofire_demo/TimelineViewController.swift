@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tweets: [Tweet] = []
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -40,9 +40,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
-        cell.tweet = tweets[indexPath.row]
-        cell.nameTextLabel.text = cell.tweet.user.name as! String
-        
+        cell.tweet = tweets[indexPath.row]     
         
         return cell
     }

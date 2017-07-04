@@ -38,11 +38,13 @@ class User {
     var dictionary: [String: Any]?
     var name: String
     var screenName: String
+    var profileImageURL: URL
     
     init(dictionary: [String: Any]) {
         self.dictionary = dictionary
         name = dictionary["name"] as! String
         screenName = dictionary["screen_name"] as! String // consider changing to "!" instead
-
+        let profileImageString = dictionary["profile_image_url_https"] as! String
+        profileImageURL = URL(string: profileImageString)!
     }
 }

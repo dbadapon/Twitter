@@ -170,8 +170,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favoriteCountLabel" destination="G1i-sh-ymd" id="LqM-yM-g83"/>
                                             <outlet property="nameTextLabel" destination="5oa-xb-dDu" id="xuB-P2-2z6"/>
+                                            <outlet property="profileImageView" destination="BLE-Nf-YY2" id="I8a-a3-lQq"/>
+                                            <outlet property="retweetCountLabel" destination="O11-3U-557" id="V5q-YQ-97c"/>
+                                            <outlet property="timestampLabel" destination="POC-Zs-gd2" id="Ko2-bS-jVH"/>
                                             <outlet property="tweetTextLabel" destination="epC-Fs-Q5Z" id="ZLP-IG-Wsf"/>
+                                            <outlet property="userNameTextLabel" destination="KxU-w4-bMm" id="Qce-bD-1PH"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
