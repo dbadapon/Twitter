@@ -131,6 +131,9 @@
                                                     </constraints>
                                                     <state key="normal" title="Button" image="retweet-icon"/>
                                                     <state key="selected" image="retweet-icon-green"/>
+                                                    <connections>
+                                                        <action selector="didTapRetweet:" destination="U1g-kw-izy" eventType="touchUpInside" id="8c6-om-dAs"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O11-3U-557">
                                                     <rect key="frame" x="179" y="74" width="17" height="18"/>
@@ -176,6 +179,7 @@
                                             <outlet property="favoriteCountLabel" destination="G1i-sh-ymd" id="LqM-yM-g83"/>
                                             <outlet property="nameTextLabel" destination="5oa-xb-dDu" id="xuB-P2-2z6"/>
                                             <outlet property="profileImageView" destination="BLE-Nf-YY2" id="I8a-a3-lQq"/>
+                                            <outlet property="retweetButton" destination="tNH-AA-41f" id="oIy-Mg-EY4"/>
                                             <outlet property="retweetCountLabel" destination="O11-3U-557" id="V5q-YQ-97c"/>
                                             <outlet property="timestampLabel" destination="POC-Zs-gd2" id="Ko2-bS-jVH"/>
                                             <outlet property="tweetTextLabel" destination="epC-Fs-Q5Z" id="ZLP-IG-Wsf"/>
