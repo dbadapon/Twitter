@@ -17,6 +17,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged) // look up exactly what this means
+        tableView.insertSubview(refreshControl, at: 0)
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -29,6 +33,17 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 self.tableView.reloadData()
             } else if let error = error {
                 print("Error getting home timeline: " + error.localizedDescription)
+            }
+        }
+    }
+    
+    func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        // create URL request thing...
+        APIManager.shared.getHomeTimeLine { (tweets, error) in // I'm not sure what this means...s
+            if let tweets = tweets {
+                self.tweets = tweets
+                self.tableView.reloadData()
+                refreshControl.endRefreshing()
             }
         }
     }

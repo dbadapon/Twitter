@@ -85,7 +85,6 @@
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BLE-Nf-YY2">
                                                     <rect key="frame" x="8" y="8" width="50" height="50"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="04j-cd-yeW"/>
                                                         <constraint firstAttribute="height" constant="50" id="Hbv-K2-R8i"/>
@@ -115,6 +114,9 @@
                                                     <rect key="frame" x="232" y="68" width="30" height="30"/>
                                                     <state key="normal" image="favor-icon"/>
                                                     <state key="selected" image="favor-icon-red"/>
+                                                    <connections>
+                                                        <action selector="didTapFavorite:" destination="U1g-kw-izy" eventType="touchUpInside" id="yv6-my-aOH"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6/7/17" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POC-Zs-gd2">
                                                     <rect key="frame" x="219.5" y="8" width="42.5" height="18"/>
@@ -170,6 +172,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favoriteButton" destination="yEM-Tv-pPV" id="Mky-Sy-xQx"/>
                                             <outlet property="favoriteCountLabel" destination="G1i-sh-ymd" id="LqM-yM-g83"/>
                                             <outlet property="nameTextLabel" destination="5oa-xb-dDu" id="xuB-P2-2z6"/>
                                             <outlet property="profileImageView" destination="BLE-Nf-YY2" id="I8a-a3-lQq"/>
