@@ -101,9 +101,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             if let indexPath = tableView.indexPath(for: cell) {
                 let tweet = tweets[indexPath.row]
                 let detailViewController = segue.destination as! DetailViewController
-                print("tweet text: \(tweet.text)")
                 detailViewController.tweet = tweet
-                print("tweet in detail view controller: \(detailViewController.tweet.text)")
             }
          
     
