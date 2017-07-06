@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
     
     var tweets: [Tweet] = []
     @IBOutlet weak var tableView: UITableView!
@@ -64,6 +64,17 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func did(post: Tweet) {
+        APIManager.shared.getHomeTimeLine { (tweets, error) in
+            if let tweets = tweets {
+                self.tweets = tweets
+                self.tableView.reloadData()
+            } else if let error = error {
+                print("Error getting home timeline: " + error.localizedDescription)
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -75,14 +86,16 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    /*
+    
+    
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+        let destination = segue.destination as! ComposeViewController
+        destination.delegate = self
      }
-     */
+    
     
 }

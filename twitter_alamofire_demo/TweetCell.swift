@@ -32,17 +32,6 @@ class TweetCell: UITableViewCell {
     
     var tweet: Tweet! {
         didSet {
-//            tweetTextLabel.text = tweet.text
-//            nameTextLabel.text = tweet.user.name
-//            
-//            let userNameString = tweet.user.screenName
-//            userNameTextLabel.text = "@\(userNameString)"
-//            
-//            timestampLabel.text = tweet.createdAtString
-//            retweetCountLabel.text = String(tweet.retweetCount)
-//            favoriteCountLabel.text = String(tweet.favoriteCount)
-//            
-//            profileImageView.af_setImage(withURL: tweet.user.profileImageURL)
             refreshData()
         }
     }
@@ -57,7 +46,6 @@ class TweetCell: UITableViewCell {
                 if let error = error {
                     print("Error retweeting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
-                        print("Successfully retweeted the following Tweet: \n\(tweet.text)")
                 }
             })
         } else if tweet.retweeted {
@@ -84,7 +72,7 @@ class TweetCell: UITableViewCell {
         if tweet.favorited! == false {
             tweet.favorited = true
             tweet.favoriteCount += 1
-            refreshData() // I don't know whether you need this extra one...
+            refreshData()
             APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
                 if let error = error {
                     print("Error favoriting tweet: \(error.localizedDescription)")
@@ -93,10 +81,7 @@ class TweetCell: UITableViewCell {
             }
         } else if tweet.favorited! {
             tweet.favorited = false
-//            favoriteButton.isSelected = false
-//            favoriteCountLabel.text = String(tweet.favoriteCount - 1)
             tweet.favoriteCount -= 1
-            
             refreshData()
             APIManager.shared.unfavorite(tweet, completion: { (tweet: Tweet?, error: Error?) in
                 if let error = error {
@@ -120,7 +105,6 @@ class TweetCell: UITableViewCell {
         retweetCountLabel.text = String(tweet.retweetCount)
         retweetButton.isSelected = tweet.retweeted
         
-//        print("             FAVORITE COUNT: \(tweet.favoriteCount)")
         favoriteCountLabel.text = String(tweet.favoriteCount)
         favoriteButton.isSelected = tweet.favorited!
         

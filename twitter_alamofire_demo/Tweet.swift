@@ -24,10 +24,8 @@ class Tweet {
     init(dictionary: [String: Any]) {
         id = dictionary["id"] as! Int64
         text = dictionary["text"] as! String
-        print(text)
         favoriteCount = dictionary["favorite_count"] as! Int
         favorited = dictionary["favorited"] as? Bool
-        print("SHOULD BE TRUE: \(favorited)")
         retweetCount = dictionary["retweet_count"] as! Int
         retweeted = dictionary["retweeted"] as! Bool
         
