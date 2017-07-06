@@ -93,9 +93,20 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "composeSegue" {
         let destination = segue.destination as! ComposeViewController
         destination.delegate = self
-     }
+    } else if segue.identifier == "detailSegue" {
+            let cell = sender as! UITableViewCell
+            if let indexPath = tableView.indexPath(for: cell) {
+                let tweet = tweets[indexPath.row]
+                let detailViewController = segue.destination as! DetailViewController
+                print("tweet text: \(tweet.text)")
+                detailViewController.tweet = tweet
+                print("tweet in detail view controller: \(detailViewController.tweet.text)")
+            }
+         
     
-    
+    }
+}
 }

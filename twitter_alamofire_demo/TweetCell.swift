@@ -68,7 +68,6 @@ class TweetCell: UITableViewCell {
     
 
     @IBAction func didTapFavorite(_ sender: Any) {
-        print("     FAVORITED? : \(tweet.favorited)")
         if tweet.favorited! == false {
             tweet.favorited = true
             tweet.favoriteCount += 1
