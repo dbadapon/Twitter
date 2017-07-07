@@ -36,6 +36,8 @@ class User {
     }
     
     var dictionary: [String: Any]?
+    
+    var id: Int64
     var name: String
     var screenName: String
     var profileImageURL: URL
@@ -47,6 +49,7 @@ class User {
     init(dictionary: [String: Any]) {
         self.dictionary = dictionary
         
+        id = dictionary["id"] as! Int64
         name = dictionary["name"] as! String
         screenName = dictionary["screen_name"] as! String // consider changing to "!" instead
         

@@ -52,7 +52,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         refreshData()
         
-        APIManager.shared.getUserTimeLine { (tweets, error) in
+        APIManager.shared.getUserTimeLine(userId: user.id) { (tweets, error) in
             if let tweets = tweets {
                 self.tweets = tweets
                 self.profileTableView.reloadData()
@@ -105,7 +105,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
 
     func did(post: Tweet) {
-        APIManager.shared.getUserTimeLine { (tweets, error) in
+        APIManager.shared.getUserTimeLine(userId: user.id) { (tweets, error) in
             if let tweets = tweets {
                 self.tweets = tweets
                 self.profileTableView.reloadData()
