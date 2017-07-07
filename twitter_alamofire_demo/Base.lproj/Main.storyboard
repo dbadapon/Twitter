@@ -184,7 +184,7 @@
                                             <outlet property="timestampLabel" destination="POC-Zs-gd2" id="Ko2-bS-jVH"/>
                                             <outlet property="tweetTextLabel" destination="epC-Fs-Q5Z" id="ZLP-IG-Wsf"/>
                                             <outlet property="userNameTextLabel" destination="KxU-w4-bMm" id="Qce-bD-1PH"/>
-                                            <segue destination="WYP-1y-jPp" kind="show" identifier="detailSegue" id="Jm8-uJ-Gbe"/>
+                                            <segue destination="WYP-1y-jPp" kind="show" identifier="detailSegue" id="L85-7m-cGe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -212,6 +212,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Ctl-bI-Eag" id="igH-cX-XMH"/>
+                        <segue destination="cPQ-Y5-0xZ" kind="show" identifier="profileSegue" id="vVX-N8-xE0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZlF-i2-Ves" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -221,7 +222,7 @@
         <!--Tweet-->
         <scene sceneID="L2z-QZ-DO4">
             <objects>
-                <viewController title="Tweet" id="WYP-1y-jPp" customClass="DetailViewController" customModule="twitter_alamofire_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailSegue" title="Tweet" id="WYP-1y-jPp" customClass="DetailViewController" customModule="twitter_alamofire_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="h7r-Og-mSh"/>
                         <viewControllerLayoutGuide type="bottom" id="xem-b6-buf"/>
@@ -361,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9a-Mt-Pqa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3484" y="893"/>
+            <point key="canvasLocation" x="3593" y="986"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="iGn-XV-pic">
@@ -417,7 +418,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MPw-vK-tU7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2758" y="893"/>
+            <point key="canvasLocation" x="1830" y="893"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="zeJ-ni-rCo">
@@ -658,7 +659,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WbN-Mj-F55" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4437.6000000000004" y="35.532233883058474"/>
+            <point key="canvasLocation" x="2660" y="1014"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WXZ-z8-8LI">
@@ -715,7 +716,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="leo-ZH-41E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3484" y="36"/>
+            <point key="canvasLocation" x="3593" y="36"/>
         </scene>
     </scenes>
     <resources>
@@ -731,6 +732,7 @@
         <image name="retweet-icon-green" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Sav-aL-36U"/>
+        <segue reference="L85-7m-cGe"/>
+        <segue reference="mDi-2M-yj4"/>
     </inferredMetricsTieBreakers>
 </document>

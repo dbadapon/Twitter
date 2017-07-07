@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate, TweetCellDelegate {
     
     var tweets: [Tweet] = []
     @IBOutlet weak var tableView: UITableView!
@@ -55,7 +55,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
-        cell.tweet = tweets[indexPath.row]     
+        cell.tweet = tweets[indexPath.row]
+        
+        cell.delegate = self
         
         return cell
     }
@@ -85,6 +87,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         APIManager.shared.logout()
     }
     
+    func tweetCell(_ tweetCell: TweetCell, didTap user: User) {
+        performSegue(withIdentifier: "profileSegue", sender: user)
+    }
+    
     
     
     
@@ -96,13 +102,20 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         if segue.identifier == "composeSegue" {
         let destination = segue.destination as! ComposeViewController
         destination.delegate = self
-    } else if segue.identifier == "detailSegue" {
+        }
+        else if segue.identifier == "detailSegue" {
             let cell = sender as! UITableViewCell
             if let indexPath = tableView.indexPath(for: cell) {
                 let tweet = tweets[indexPath.row]
                 let detailViewController = segue.destination as! DetailViewController
                 detailViewController.tweet = tweet
             }
-    }
+        }
+        else if segue.identifier == "profileSegue" {
+            let user = sender as! User
+            let profileViewController = segue.destination as! ProfileViewController
+            profileViewController.user = user
+            
+        }
 }
 }

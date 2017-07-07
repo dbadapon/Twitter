@@ -9,6 +9,10 @@
 import UIKit
 import AlamofireImage
 
+protocol TweetCellDelegate: class {
+    func tweetCell(_ tweetCell: TweetCell, didTap user: User)
+}
+
 class TweetCell: UITableViewCell {
     @IBOutlet weak var nameTextLabel: UILabel!
     
@@ -27,6 +31,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetButton: UIButton!
     
     @IBOutlet weak var favoriteButton: UIButton!
+    
+    weak var delegate: TweetCellDelegate?
     
     
     
@@ -114,10 +120,16 @@ class TweetCell: UITableViewCell {
         profileImageView.clipsToBounds = true
     }
     
+    func didTapUserProfile(_ sender: UITapGestureRecognizer) {
+        delegate?.tweetCell(self, didTap: tweet.user)
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        let profileTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapUserProfile(_:)))
+        profileImageView.addGestureRecognizer(profileTapGestureRecognizer)
+        profileImageView.isUserInteractionEnabled = true
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

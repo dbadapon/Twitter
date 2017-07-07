@@ -23,28 +23,32 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var followingTextLabel: UILabel!
     
     @IBOutlet weak var followerTextLabel: UILabel!
-    
+
     var tweets: [Tweet] = []
     
     @IBOutlet weak var profileTableView: UITableView!
     
     
     
-    var tweet: Tweet! // if tweet is nil, show current user!
-    var user = User.current!
+//    var tweet: Tweet! // if tweet is nil, show current user!
+    var user: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if user == nil {
+            user = User.current
+        }
         
         profileTableView.dataSource = self
         profileTableView.delegate = self
         
         profileTableView.rowHeight = UITableViewAutomaticDimension
         profileTableView.estimatedRowHeight = 100
+    
         
         print("user is: \(user.name)")
-        print(user.profileImageURL)
-        print("background image url: \(user.backgroundImageURLString)")
+
 
         refreshData()
         
