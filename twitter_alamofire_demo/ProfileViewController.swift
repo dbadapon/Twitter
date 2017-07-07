@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
 
@@ -96,14 +96,33 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
 
-    /*
+    func did(post: Tweet) {
+        APIManager.shared.getUserTimeLine { (tweets, error) in
+            if let tweets = tweets {
+                self.tweets = tweets
+                self.profileTableView.reloadData()
+            } else if let error = error {
+                print("Error getting user timeline: " + error.localizedDescription)
+            }
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "composeSegue" {
+            let destination = segue.destination as! ComposeViewController
+            destination.delegate = self
+        } else if segue.identifier == "detailSegue" {
+            let cell = sender as! UITableViewCell
+            if let indexPath = profileTableView.indexPath(for: cell) {
+                let tweet = tweets[indexPath.row]
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.tweet = tweet
+            }
+        }
     }
-    */
+ 
 
 }

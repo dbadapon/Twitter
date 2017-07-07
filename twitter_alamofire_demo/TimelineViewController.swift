@@ -103,8 +103,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 let detailViewController = segue.destination as! DetailViewController
                 detailViewController.tweet = tweet
             }
-         
-    
     }
 }
 }
