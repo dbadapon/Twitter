@@ -62,7 +62,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    } // wait why is this here lol
+    }
     
     func did(post: Tweet) {
         APIManager.shared.getHomeTimeLine { (tweets, error) in

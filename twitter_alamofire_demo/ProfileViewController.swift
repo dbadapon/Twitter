@@ -95,6 +95,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        profileTableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 
     func did(post: Tweet) {
         APIManager.shared.getUserTimeLine { (tweets, error) in

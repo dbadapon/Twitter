@@ -35,6 +35,58 @@ class ProfileCell: UITableViewCell {
         }
     }
     
+    
+    @IBAction func didTapRetweet(_ sender: Any) {
+        if tweet.retweeted == false {
+            tweet.retweeted = true
+            tweet.retweetCount += 1
+            refreshData()
+            APIManager.shared.retweet(tweet, completion: { (tweet: Tweet?, error: Error?) in
+                if let error = error {
+                    print("Error retweeting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                }
+            })
+        } else if tweet.retweeted {
+            tweet.retweeted = false
+            tweet.retweetCount -= 1
+            refreshData()
+            APIManager.shared.unretweet(tweet, completion: { (tweet: Tweet?, error: Error?) in
+                if let error = error {
+                    print("Error unretweeting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully unretweeted the following Tweet: \n\(tweet.text)")
+                }
+            })
+        }
+    }
+    
+    
+    @IBAction func didTapFavorite(_ sender: Any) {
+        if tweet.favorited! == false {
+            tweet.favorited = true
+            tweet.favoriteCount += 1
+            refreshData()
+            APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
+                if let error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                }
+            }
+        } else if tweet.favorited! {
+            tweet.favorited = false
+            tweet.favoriteCount -= 1
+            refreshData()
+            APIManager.shared.unfavorite(tweet, completion: { (tweet: Tweet?, error: Error?) in
+                if let error = error {
+                    print("Error UNfavoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                }
+            })
+        }
+    }
+    
+    
     func refreshData() {
         tweetTextLabel.text = tweet.text
         nameTextLabel.text = tweet.user.name
