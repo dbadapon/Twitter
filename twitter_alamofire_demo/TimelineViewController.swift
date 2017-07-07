@@ -38,8 +38,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
-        // create URL request thing...
-        APIManager.shared.getHomeTimeLine { (tweets, error) in // I'm not sure what this means...s
+        APIManager.shared.getHomeTimeLine { (tweets, error) in 
             if let tweets = tweets {
                 self.tweets = tweets
                 self.tableView.reloadData()

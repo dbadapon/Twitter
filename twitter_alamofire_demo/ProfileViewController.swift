@@ -40,6 +40,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             user = User.current
         }
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        profileTableView.insertSubview(refreshControl, at: 0)
+        
         profileTableView.dataSource = self
         profileTableView.delegate = self
         
@@ -63,6 +67,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         // Do any additional setup after loading the view.
     }
+    
+    func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        APIManager.shared.getUserTimeLine(userId: user.id) { (tweets, error) in
+            if let tweets = tweets {
+                self.tweets = tweets
+                self.profileTableView.reloadData()
+                refreshControl.endRefreshing()
+            } else if let error = error {
+                print("Error getting user timeline: " + error.localizedDescription)
+            }
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
