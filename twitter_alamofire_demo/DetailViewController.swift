@@ -110,6 +110,11 @@ class DetailViewController: UIViewController {
         favoriteButton.isSelected = tweet.favorited!
         
         profileImageView.af_setImage(withURL: tweet.user.profileImageURL)
+        
+        profileImageView.layer.masksToBounds = false
+        profileImageView.layer.cornerRadius = profileImageView.frame.height/2
+        profileImageView.clipsToBounds = true
+
     }
 
     /*

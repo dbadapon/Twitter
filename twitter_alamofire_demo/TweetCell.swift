@@ -16,6 +16,8 @@ class TweetCell: UITableViewCell {
     
     @IBOutlet weak var timestampLabel: UILabel!
     
+    @IBOutlet weak var tweetTextLabel: UILabel!
+    
     @IBOutlet weak var retweetCountLabel: UILabel!
     
     @IBOutlet weak var favoriteCountLabel: UILabel!
@@ -26,9 +28,7 @@ class TweetCell: UITableViewCell {
     
     @IBOutlet weak var favoriteButton: UIButton!
     
-
     
-    @IBOutlet weak var tweetTextLabel: UILabel!
     
     var tweet: Tweet! {
         didSet {
@@ -108,6 +108,10 @@ class TweetCell: UITableViewCell {
         favoriteButton.isSelected = tweet.favorited!
         
         profileImageView.af_setImage(withURL: tweet.user.profileImageURL)
+
+        profileImageView.layer.masksToBounds = false
+        profileImageView.layer.cornerRadius = profileImageView.frame.height/2
+        profileImageView.clipsToBounds = true
     }
     
     

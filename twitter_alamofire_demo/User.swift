@@ -39,12 +39,29 @@ class User {
     var name: String
     var screenName: String
     var profileImageURL: URL
+    var backgroundImageURLString: String
+    var bio: String
+    var followersCount: Int
+    var followingCount: Int
     
     init(dictionary: [String: Any]) {
         self.dictionary = dictionary
+        
         name = dictionary["name"] as! String
         screenName = dictionary["screen_name"] as! String // consider changing to "!" instead
+        
         let profileImageString = dictionary["profile_image_url_https"] as! String
         profileImageURL = URL(string: profileImageString)!
+        
+        backgroundImageURLString = dictionary["profile_banner_url"] as? String ?? ""
+
+    
+        bio = dictionary["description"] as! String
+        
+        followersCount = dictionary["followers_count"] as! Int
+        followingCount = dictionary["friends_count"] as! Int
+        
+        
+        
     }
 }
