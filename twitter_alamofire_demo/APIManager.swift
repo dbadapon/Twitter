@@ -169,7 +169,6 @@ class APIManager: SessionManager {
                 print("")
                 let tweet = Tweet(dictionary: tweetDictionary)
                 completion(tweet, nil)
-                print("retweeted a tweet!")
             } else {
                 completion(nil, response.result.error)
             }
@@ -186,7 +185,6 @@ class APIManager: SessionManager {
             if response.result.isSuccess, let tweetDictionary = response.result.value as? [String: Any] {
                 let tweet = Tweet(dictionary: tweetDictionary)
                 completion(tweet, nil)
-                print("unretweeted a tweet!")
             } else {
                 completion(nil, response.result.error)
             }
@@ -224,7 +222,6 @@ class APIManager: SessionManager {
         //            return
         //        }
         
-//        let requestURL = "https://api.twitter.com/1.1/statuses/user_timeline.json"
         let idString = String(userId)
         let urlString = "https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=\(idString)"
         let requestURL = URL(string: urlString)!

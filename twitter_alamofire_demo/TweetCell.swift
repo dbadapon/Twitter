@@ -62,7 +62,7 @@ class TweetCell: UITableViewCell {
                 if let error = error {
                     print("Error unretweeting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
-                    print("Successfully unretweeted the following Tweet: \n\(tweet.text)")
+//                    print("Successfully unretweeted the following Tweet: \n\(tweet.text)")
                 }
             })
         }

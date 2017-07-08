@@ -22,7 +22,12 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var characterCountLabel: UILabel!
     
+    var canPost = false
     
+    
+    @IBAction func tapRecognizer(_ sender: Any) {
+        view.endEditing(true)
+    }
     
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -31,14 +36,17 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     
     
     @IBAction func didTapTweet(_ sender: Any) {
-        APIManager.shared.composeTweet(with: composeTextView.text) { (tweet, error) in
-            if let error = error {
-                print("Error composing Tweet: \(error.localizedDescription)")
-            } else if let tweet = tweet {
-                self.delegate?.did(post: tweet) 
-                print("Compose Tweet Success!")
-                self.dismiss(animated: true, completion: nil)
+        if canPost {
+            APIManager.shared.composeTweet(with: composeTextView.text) { (tweet, error) in
+                if let error = error {
+                    print("Error composing Tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    self.delegate?.did(post: tweet)
+//                    print("Compose Tweet Success!")
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
+
         }
     }
     
@@ -51,10 +59,20 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     }
 
     func textViewDidChange(_ textView: UITextView) {
-//        print("we're here!")
         let count = composeTextView.text.characters.count
+        if count == 0 || count > 140 {
+            canPost = false
+        } else {
+            canPost = true
+        }
+        
+        if count > 120 {
+            characterCountLabel.textColor = UIColor.red
+        } else {
+            characterCountLabel.textColor = UIColor.lightGray
+        }
+        
         characterCountLabel.text = "\(140 - composeTextView.text.characters.count)"
-//        print(composeTextView.text.characters.count)
     }
     
     func textField(textView: UITextView, shouldChangeCharactersInRAnge range: NSRange, replacementString string: String) -> Bool {

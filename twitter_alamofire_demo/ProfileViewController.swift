@@ -49,9 +49,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         profileTableView.rowHeight = UITableViewAutomaticDimension
         profileTableView.estimatedRowHeight = 100
-    
-        
-        print("user is: \(user.name)")
 
 
         refreshData()
