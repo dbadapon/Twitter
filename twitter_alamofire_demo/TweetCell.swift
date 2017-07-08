@@ -118,6 +118,7 @@ class TweetCell: UITableViewCell {
         profileImageView.layer.masksToBounds = false
         profileImageView.layer.cornerRadius = profileImageView.frame.height/2
         profileImageView.clipsToBounds = true
+        
     }
     
     func didTapUserProfile(_ sender: UITapGestureRecognizer) {

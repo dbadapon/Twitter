@@ -12,11 +12,17 @@ protocol ComposeViewControllerDelegate: class {
     func did(post: Tweet)
 }
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextViewDelegate {
     
     weak var delegate: ComposeViewControllerDelegate?
     
     @IBOutlet weak var composeTextView: UITextView!
+    
+    @IBOutlet weak var tweetButton: UIButton!
+    
+    @IBOutlet weak var characterCountLabel: UILabel!
+    
+    
     
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -39,8 +45,21 @@ class ComposeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tweetButton.layer.cornerRadius = 15
+        
+        composeTextView.delegate = self
+    }
 
-        // Do any additional setup after loading the view.
+    func textViewDidChange(_ textView: UITextView) {
+//        print("we're here!")
+        let count = composeTextView.text.characters.count
+        characterCountLabel.text = "\(140 - composeTextView.text.characters.count)"
+//        print(composeTextView.text.characters.count)
+    }
+    
+    func textField(textView: UITextView, shouldChangeCharactersInRAnge range: NSRange, replacementString string: String) -> Bool {
+        let newLength = textView.text.characters.count + (string.characters.count - range.length) <= 140
+        return newLength
     }
 
     override func didReceiveMemoryWarning() {
